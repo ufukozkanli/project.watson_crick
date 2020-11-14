@@ -318,8 +318,8 @@ def decryption(data):
     R = data & 0xffffffff
     for i in range(17, 1, -1):
         ##WATSON
-        L= transform_watson(L)
-        R= transform_watson(R)
+        #L= transform_watson(L)
+        #R= transform_watson(R)
         ##
         L = p[i]^L
         L1 = func(L)
@@ -352,20 +352,18 @@ def transform_bitarray2int(ar):
     a=int("".join(str(i) for i in ar), 2)
     return a
     
-
-if __name__ == '__main__':
-    
+def main():
     #key = "secret_k"
-    text= "Hello world us Blowfish"    
+    text= str('a'*(1<<10) )#"Hello world us Blowfish"    
     r=[]
-    
+
     text_b=list(text.encode())
     for d in text_b:
         d=int(d)
         rx = encryption(d)
 
         r.append(rx)
-    
+
     r2=[]
     for d in r:        
         rx2 = decryption(d)
@@ -373,9 +371,13 @@ if __name__ == '__main__':
     r2=bytearray(r2)
     r2=r2.decode()
 
-    print("Ciphered: %r" % r)
-    print("Deciphered: ", r2)
+    #print("Ciphered: %r" % r)
+    #print("Deciphered: ", r2)
 
     assert r2==text,"FAIL"
+
+if __name__ == '__main__':
+    main()
+    
     
 

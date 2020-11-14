@@ -234,12 +234,15 @@ class des():
     def decrypt(self, key, text, padding=False):
         return self.run(key, text, DECRYPT, padding)
     
-
-if __name__ == '__main__':
+def main():
     key = "secret_k"
-    text= "Hello world us"
+    #1024*8 
+    text= str('a'*(1<<10) ) #"Hello world us"
     d = des()
     r = d.encrypt(key,text,True)
     r2 = d.decrypt(key,r,True)
-    print("Ciphered: %r" % r)
-    print("Deciphered: ", r2)
+    #print("Ciphered: %r" % r)
+    #print("Deciphered: ", r2)
+
+if __name__ == '__main__':
+    main()
